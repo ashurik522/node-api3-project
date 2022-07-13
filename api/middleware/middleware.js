@@ -27,8 +27,8 @@ function validateUser(req, res, next) {
   next()
 }
 
-function validatePost(req, res, next) {x
-  // DO YOUR MAGIC
+function validatePost(req, res, next) {
+
 }
 
 // do not forget to expose these functions to other modules
