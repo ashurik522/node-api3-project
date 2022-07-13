@@ -70,7 +70,17 @@ router.get('/:id/posts', validateUserId, (req, res, next) => {
 });
 
 router.post('/:id/posts', validateUserId, validatePost, (req, res) => {
+  const postInfo = { ...req.body, user_id: req.params.id }
   
+  Posts.insert(postInfo)
+    .then(post => {
+      res.status(201).json(post)
+    })
+    .catch(err => {
+      console.log(err)
+      res.status(500).json({ message: 'Error creating post'})
+    })
+
 });
 
 // do not forget to export the router
