@@ -32,7 +32,7 @@ function validatePost(req, res, next) {
     res.status(400).json({ message: 'missing required text field'})
     return;
   }
-  req.newPost = { text: req.body.text }
+ 
   next()
 }
 

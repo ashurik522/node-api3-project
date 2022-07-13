@@ -16,8 +16,7 @@ router.get('/', (req, res) => {
       res.status(200).json(users)
     })
     .catch(err => {
-      console.log(err)
-      res.status(500).json({ message: 'Error retrieving users'})
+      next({})
     })
 });
 
@@ -31,8 +30,7 @@ router.post('/', validateUser, (req, res, next) => {
       res.status(201).json(user)
     })
     .catch(err => {
-      console.log(err)
-      res.status(500).json({ message: 'Error posting user'})
+      next({})
     })
 });
 
@@ -42,8 +40,7 @@ router.put('/:id',validateUserId, validateUser, (req, res) => {
       res.status(200).json(user)
     })
     .catch(err => {
-      console.log(err);
-      res.status(500).json({ message: 'Error updating user'})
+      next({})
     })
 });
 
@@ -53,8 +50,7 @@ router.delete('/:id',validateUserId, (req, res) => {
       res.status(200).json(req.user)
     })
     .catch(err => {
-      console.log(err)
-      res.status(500).json({ message: "Error removing user"})
+      next({})
     })
 });
 
@@ -64,21 +60,19 @@ router.get('/:id/posts', validateUserId, (req, res, next) => {
       res.status(200).json(posts)
     })
     .catch(err => {
-      console.log(err)
-      res.status(500).json({ message: "Error retrieving posts"})
+      next({})
     })
 });
 
 router.post('/:id/posts', validateUserId, validatePost, (req, res) => {
   const postInfo = { ...req.body, user_id: req.params.id }
-  
+
   Posts.insert(postInfo)
     .then(post => {
       res.status(201).json(post)
     })
     .catch(err => {
-      console.log(err)
-      res.status(500).json({ message: 'Error creating post'})
+      next({})
     })
 
 });
